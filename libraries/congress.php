@@ -31,10 +31,7 @@ class Congress
 	protected function from_year($year)
 	{
 		// year default is now
-		if (!$year)
-		{
-			$year = (int) strftime('%Y', time());
-		}
+		if (!$year) $year = (int) strftime('%Y', time());
 		
 		// set what we know
 		$this->year = 2007;
