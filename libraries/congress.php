@@ -76,7 +76,7 @@ class Congress {
         $object->year = $year;
         
         // add cycle
-        if($odd = $year%2)
+        if($odd =  $year%2)
         {
             $object->cycle++;
         }
