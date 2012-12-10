@@ -5,17 +5,18 @@ A simple library for converting dates into congress/session number pairs, and vi
 ## Usage
 
 ```
-// get from year
-$congress = Congress::from_year(2012);
+// get congress from year
+$congress = Congress::from_year(2012)->congress;
 
-// get from congress
-$congress = Congress::from_congress($congress, $session);
+// get year from congress
+$congress = Congress::from_congress($congress, $session)->year;
 
-// get current
-$congress = Congress::current();
+// get current session
+$session = Congress::current()->session;
+
+// get current cycle
+$cycle = Congress::current()->cycle;
 ```
-
-Returns an object containing ``congress``, ``session``, ``year``, and ``cycle`` values.
 
 ## Helper
 

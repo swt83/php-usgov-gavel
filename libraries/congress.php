@@ -1,12 +1,14 @@
 <?php
 
-class Congress
-{
+class Congress {
+
     public $congress, $session, $cycle, $year;
     
     /**
      * Build congress info based on congress.
      *
+     * @param   int $congress
+     * @param   int $session
      * @return  object
      */
     protected static function from_congress($congress, $session)
@@ -29,6 +31,7 @@ class Congress
     /**
      * Build congress info based on year.
      *
+     * @param   int $year   Year to find congress/session pair
      * @return  object
      */
     public static function from_year($year = null)
@@ -39,7 +42,7 @@ class Congress
 
         // set vars
         if (!$year) $year = (int) strftime('%Y', time());
-        $object->year = $year;
+        $year = (int) $year;
     
         // set givens
         $object->year = 2007;
@@ -99,10 +102,12 @@ class Congress
     /**
      * Filter bill ids to standardized format.
      *
+     * @param   string  $string Bill reference ids for filtering
      * @return  string
      */
     public static function filter($string)
     {
         return preg_replace('/[.,!?:;\'"-]+/i', '', $string);
     }
+
 }
