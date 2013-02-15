@@ -1,5 +1,5 @@
 <?php
 
 Autoloader::map(array(
-	'Congress' => __DIR__.'/libraries/congress.php',
+    'Congress' => __DIR__.'/libraries/gavel.php',
 ));

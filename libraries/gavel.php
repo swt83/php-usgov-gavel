@@ -1,6 +1,6 @@
 <?php
 
-class Congress {
+class Gavel {
 
     public $congress, $session, $cycle, $year;
     
