@@ -1,4 +1,4 @@
-# Congress for LaravelPHP
+# Gavel for Laravel 3.x
 
 A simple library for converting dates into congress/session number pairs, and vice versa.
 
