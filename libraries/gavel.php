@@ -65,7 +65,7 @@ class Gavel {
         }
         $object->congress = $congress;
         $object->session = $session;
-        $object->set_cycle();
+        $object->calc_cycle();
 
         // return
         return $object;
@@ -117,7 +117,7 @@ class Gavel {
             }
         }
         $object->year = $year;
-        $object->set_cycle();
+        $object->calc_cycle();
         
         // return
         return $object;
@@ -138,12 +138,12 @@ class Gavel {
      *
      * @return void
      */
-    public function set_cycle()
+    protected function calc_cycle()
     {
         // calculate cycle
-        if($odd =  $this->year%2)
+        if($odd = $this->year%2)
         {
-            $this->cycle++;
+            $this->cycle = $this->year + 1;
         }
         else
         {
