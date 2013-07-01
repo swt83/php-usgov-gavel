@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * A package for working w/ Congress and Session numbers.
+ *
+ * @package    Gavel
+ * @author     Scott Travis <scott.w.travis@gmail.com>
+ * @link       http://github.com/swt83/laravel-usgov-gavel
+ * @license    MIT License
+ */
+
 class Gavel {
 
     public $congress, $session, $cycle, $year;
