@@ -9,12 +9,12 @@
  * @license    MIT License
  */
 
-class Gavel {
-
+class Gavel
+{
     public $congress, $session, $cycle, $year;
     
     /**
-     * Build congress info based on congress.
+     * Constructor using congress and session as start data.
      *
      * @param   int $congress
      * @param   int $session
@@ -36,42 +36,38 @@ class Gavel {
         $object->session = 1;
 
         // loop thru congresses to target...
-        while ($object->congress !== $congress or $object->session !== $session)
-        {
-            if ($object->congress < $congress)
-            {
+        while ($object->congress !== $congress or $object->session !== $session) {
+            
+            if ($object->congress < $congress) {
                 $object->year++;
                 $object->session++;
-            }
-            elseif ($object->congress > $congress)
-            {
+            } elseif ($object->congress > $congress) {
                 $object->year--;
                 $object->session--;
-            }
-            if($object->session === 3)
-            {
+            } 
+            
+            if($object->session == 3) {
                 $object->congress++;
                 $object->session = 1;
-            }
-            elseif($object->session === 0)
-            {
+            } elseif($object->session == 0) {
                 $object->congress--;
                 $object->session = 2;
             }
-            if ($object->congress === $congress and $object->session !== $session)
-            {
-                if ($object->session === 1)
-                {
+            
+            if ($object->congress == $congress and $object->session !== $session) {
+                
+                if ($object->session == 1) {
                     $object->year++;
                     $object->session++;
-                }
-                elseif ($object->session === 2)
-                {
+                } elseif ($object->session == 2) {
                     $object->year--;
                     $object->session--;
                 }
             }
+
         }
+
+        // cleanup
         $object->congress = $congress;
         $object->session = $session;
         $object->calc_cycle();
@@ -81,7 +77,7 @@ class Gavel {
     }
     
     /**
-     * Build congress info based on year.
+     * Constructor using year as start data.
      *
      * @param   int $year   Year to find congress/session pair
      * @return  object
@@ -102,29 +98,27 @@ class Gavel {
         $object->session = 1;
         
         // loop thru years to target...
-        while($object->year !== $year)
-        {
-            if($object->year < $year)
-            {
+        while($object->year !== $year) {
+
+            if($object->year < $year) {
                 $object->year++;
                 $object->session++;
-            }
-            elseif($object->year > $year)
-            {
+            } elseif($object->year > $year) {
                 $object->year--;
                 $object->session--;
             }
-            if($object->session === 3)
-            {
+
+            if($object->session == 3) {
                 $object->congress++;
                 $object->session = 1;
-            }
-            elseif($object->session === 0)
-            {
+            } elseif($object->session == 0) {
                 $object->congress--;
                 $object->session = 2;
             }
+
         }
+
+        // cleaup
         $object->year = $year;
         $object->calc_cycle();
         
@@ -143,32 +137,48 @@ class Gavel {
     }
     
     /**
-     * Calculate the cycle associated w/ the year.
+     * Return the election cycle year based on current year.
      *
-     * @return void
+     * @return  int
      */
     protected function calc_cycle()
     {
-        // calculate cycle
-        if($odd = $this->year%2)
-        {
+        if($odd = $this->year%2) {
             $this->cycle = $this->year + 1;
-        }
-        else
-        {
+        } else {
             $this->cycle = $this->year;
         }
     }
 
     /**
-     * Filter bill ids to standardized format.
+     * Return standardized string of a bill (S.123 -> S123).
      *
-     * @param   string  $string Bill reference ids for filtering
+     * @param   string  $string 
      * @return  string
      */
-    public static function filter($string)
+    public static function bill_clean($string)
     {
         return preg_replace('/[.,!?:;\'"-]+/i', '', $string);
     }
 
+    /**
+     * Return array of info from given bill string.
+     *
+     * @param   string  $string
+     * @return  array
+     */
+    public static function bill_split($string)
+    {
+        // split string
+        list($type, $number) = preg_split('/([a-z]+)/i', $string, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        
+        // prepare array
+        $final = array(
+            'type' => $type,
+            'number' => $number
+        );
+
+        // return
+        return $final;
+    }
 }
