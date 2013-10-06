@@ -12,7 +12,7 @@
 class Gavel
 {
     public $congress, $session, $cycle, $year;
-    
+
     /**
      * Constructor using congress and session as start data.
      *
@@ -37,15 +37,15 @@ class Gavel
 
         // loop thru congresses to target...
         while ($object->congress !== $congress or $object->session !== $session) {
-            
+
             if ($object->congress < $congress) {
                 $object->year++;
                 $object->session++;
             } elseif ($object->congress > $congress) {
                 $object->year--;
                 $object->session--;
-            } 
-            
+            }
+
             if($object->session == 3) {
                 $object->congress++;
                 $object->session = 1;
@@ -53,9 +53,9 @@ class Gavel
                 $object->congress--;
                 $object->session = 2;
             }
-            
+
             if ($object->congress == $congress and $object->session !== $session) {
-                
+
                 if ($object->session == 1) {
                     $object->year++;
                     $object->session++;
@@ -75,7 +75,7 @@ class Gavel
         // return
         return $object;
     }
-    
+
     /**
      * Constructor using year as start data.
      *
@@ -91,12 +91,12 @@ class Gavel
         // set vars
         if (!$year) $year = (int) strftime('%Y', time());
         $year = (int) $year;
-    
+
         // set givens
         $object->year = 2007;
         $object->congress = 110;
         $object->session = 1;
-        
+
         // loop thru years to target...
         while($object->year !== $year) {
 
@@ -121,7 +121,7 @@ class Gavel
         // cleaup
         $object->year = $year;
         $object->calc_cycle();
-        
+
         // return
         return $object;
     }
@@ -135,7 +135,7 @@ class Gavel
     {
         return static::from_year();
     }
-    
+
     /**
      * Return the election cycle year based on current year.
      *
@@ -153,12 +153,12 @@ class Gavel
     /**
      * Return standardized string of a bill (S.123 -> S123).
      *
-     * @param   string  $string 
+     * @param   string  $string
      * @return  string
      */
     public static function bill_clean($string)
     {
-        return preg_replace('/[.,!?:;\'"-]+/i', '', $string);
+        return strtoupper(preg_replace('/[.,!?:;\'"-]+/i', '', $string));
     }
 
     /**
@@ -171,7 +171,7 @@ class Gavel
     {
         // split string
         list($type, $number) = preg_split('/([a-z]+)/i', $string, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-        
+
         // prepare array
         $final = array(
             'type' => $type,
