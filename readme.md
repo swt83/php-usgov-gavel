@@ -8,7 +8,7 @@ Normal install via Composer.
 
 ## Usage
 
-```
+```php
 // get congress from year
 $congress = Travis\Gavel::from_year(2012)->congress;
 
