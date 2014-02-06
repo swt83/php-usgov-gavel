@@ -22,8 +22,10 @@ $session = Travis\Gavel::current()->session;
 $cycle = Travis\Gavel::current()->cycle;
 ```
 
-## Helper
+## Helpers
 
-```
-$bill_number = Travis\Gavel::filter('H.R. 123'); // returns HR123
+```php
+$bill = 'H.R. 123';
+$clean = Travis\Gavel::bill_clean($bill); // returns "HR123"
+$split = bill_split($string); // returns array "HR" and "123"
 ```
