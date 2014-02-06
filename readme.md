@@ -1,25 +1,29 @@
-# Gavel for Laravel 3.x
+# Gavel
 
-A simple library for converting Congress/Session values into Year/Cycle values, and vice-versa.
+A PHP library for calculating congress and session values.
+
+## Install
+
+Normal install via Composer.
 
 ## Usage
 
 ```
 // get congress from year
-$congress = Gavel::from_year(2012)->congress;
+$congress = Travis\Gavel::from_year(2012)->congress;
 
 // get year from congress
-$congress = Gavel::from_congress($congress, $session)->year;
+$congress = Travis\Gavel::from_congress($congress, $session)->year;
 
 // get current session
-$session = Gavel::current()->session;
+$session = Travis\Gavel::current()->session;
 
 // get current cycle
-$cycle = Gavel::current()->cycle;
+$cycle = Travis\Gavel::current()->cycle;
 ```
 
 ## Helper
 
 ```
-$bill_number = Gavel::filter('H.R. 123'); // returns HR123
+$bill_number = Travis\Gavel::filter('H.R. 123'); // returns HR123
 ```

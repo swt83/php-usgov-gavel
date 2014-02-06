@@ -1,6 +1,6 @@
 {
     "name": "travis/gavel",
-    "description": "A PHP package for calculating congress and session values.",
+    "description": "A PHP library for calculating congress and session values.",
     "homepage": "https://github.com/swt83/php-usgov-gavel",
     "license": "MIT",
     "authors": [
