@@ -1,16 +1,9 @@
 <?php
 
-/**
- * A package for working w/ Congress and Session numbers.
- *
- * @package    Gavel
- * @author     Scott Travis <scott.w.travis@gmail.com>
- * @link       http://github.com/swt83/laravel-usgov-gavel
- * @license    MIT License
- */
+namespace Travis;
 
-class Gavel
-{
+class Gavel {
+
     public $congress, $session, $cycle, $year;
 
     /**
@@ -36,35 +29,43 @@ class Gavel
         $object->session = 1;
 
         // loop thru congresses to target...
-        while ($object->congress !== $congress or $object->session !== $session) {
-
-            if ($object->congress < $congress) {
+        while ($object->congress !== $congress or $object->session !== $session)
+        {
+            if ($object->congress < $congress)
+            {
                 $object->year++;
                 $object->session++;
-            } elseif ($object->congress > $congress) {
+            }
+            elseif ($object->congress > $congress)
+            {
                 $object->year--;
                 $object->session--;
             }
 
-            if($object->session == 3) {
+            if($object->session == 3)
+            {
                 $object->congress++;
                 $object->session = 1;
-            } elseif($object->session == 0) {
+            }
+            elseif($object->session == 0)
+            {
                 $object->congress--;
                 $object->session = 2;
             }
 
-            if ($object->congress == $congress and $object->session !== $session) {
-
-                if ($object->session == 1) {
+            if ($object->congress == $congress and $object->session !== $session)
+            {
+                if ($object->session == 1)
+                {
                     $object->year++;
                     $object->session++;
-                } elseif ($object->session == 2) {
+                }
+                elseif ($object->session == 2)
+                {
                     $object->year--;
                     $object->session--;
                 }
             }
-
         }
 
         // cleanup
@@ -98,24 +99,29 @@ class Gavel
         $object->session = 1;
 
         // loop thru years to target...
-        while($object->year !== $year) {
-
-            if($object->year < $year) {
+        while($object->year !== $year)
+        {
+            if($object->year < $year)
+            {
                 $object->year++;
                 $object->session++;
-            } elseif($object->year > $year) {
+            }
+            elseif($object->year > $year)
+            {
                 $object->year--;
                 $object->session--;
             }
 
-            if($object->session == 3) {
+            if($object->session == 3)
+            {
                 $object->congress++;
                 $object->session = 1;
-            } elseif($object->session == 0) {
+            }
+            elseif($object->session == 0)
+            {
                 $object->congress--;
                 $object->session = 2;
             }
-
         }
 
         // cleaup
@@ -143,9 +149,12 @@ class Gavel
      */
     protected function calc_cycle()
     {
-        if($odd = $this->year%2) {
+        if($odd = $this->year%2)
+        {
             $this->cycle = $this->year + 1;
-        } else {
+        }
+        else
+        {
             $this->cycle = $this->year;
         }
     }
@@ -181,4 +190,5 @@ class Gavel
         // return
         return $final;
     }
+
 }
