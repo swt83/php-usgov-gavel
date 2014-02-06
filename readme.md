@@ -27,5 +27,5 @@ $cycle = Travis\Gavel::current()->cycle;
 ```php
 $bill = 'H.R. 123';
 $clean = Travis\Gavel::bill_clean($bill); // returns "HR123"
-$split = Travis\Gavel::bill_split($string); // returns array "HR" and "123"
+$split = Travis\Gavel::bill_split($clean); // returns array "HR" and "123"
 ```
