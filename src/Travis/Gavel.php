@@ -42,25 +42,25 @@ class Gavel {
                 $object->session--;
             }
 
-            if($object->session == 3)
+            if($object->session === 3)
             {
                 $object->congress++;
                 $object->session = 1;
             }
-            elseif($object->session == 0)
+            elseif($object->session === 0)
             {
                 $object->congress--;
                 $object->session = 2;
             }
 
-            if ($object->congress == $congress and $object->session !== $session)
+            if ($object->congress === $congress and $object->session !== $session)
             {
-                if ($object->session == 1)
+                if ($object->session === 1)
                 {
                     $object->year++;
                     $object->session++;
                 }
-                elseif ($object->session == 2)
+                elseif ($object->session === 2)
                 {
                     $object->year--;
                     $object->session--;
@@ -112,12 +112,12 @@ class Gavel {
                 $object->session--;
             }
 
-            if($object->session == 3)
+            if($object->session === 3)
             {
                 $object->congress++;
                 $object->session = 1;
             }
-            elseif($object->session == 0)
+            elseif($object->session === 0)
             {
                 $object->congress--;
                 $object->session = 2;
