@@ -2,6 +2,8 @@
 
 namespace Travis;
 
+use Travis\Date;
+
 class Gavel {
 
     public $congress, $session, $cycle, $year;
@@ -90,7 +92,7 @@ class Gavel {
         $object = new $class;
 
         // set vars
-        if (!$year) $year = (int) strftime('%Y', time());
+        if (!$year) $year = Date::forge()->format('%Y');
         $year = (int) $year;
 
         // set givens
