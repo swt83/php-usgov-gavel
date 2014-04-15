@@ -12,7 +12,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:swt83/php-date.git"
+            "url": "https://github.com/swt83/php-date.git"
         }
     ],
     "require": {
