@@ -181,18 +181,12 @@ class Gavel
     public static function bill_split($string)
     {
         // split string
-        try {
-            list($type, $number) = preg_split('/([a-z]+)/i', $string, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-        }
-        catch (Exception $e) {
-            $type = null;
-            $number = null;
-        }
+        $result = preg_split('/([a-z]+)/i', $string, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 
         // prepare array
         $final = array(
-            'type' => $type,
-            'number' => $number
+            'type' => isset($result[0]) ? $result[0] : null,
+            'number' => isset($result[1]) ? $result[1] : null,
         );
 
         // return
