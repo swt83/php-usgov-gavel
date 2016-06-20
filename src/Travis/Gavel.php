@@ -184,7 +184,7 @@ class Gavel
         try {
             list($type, $number) = preg_split('/([a-z]+)/i', $string, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
         }
-        catch {
+        catch (Exception $e) {
             $type = null;
             $number = null;
         }
