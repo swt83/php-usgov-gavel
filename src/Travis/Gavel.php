@@ -4,8 +4,8 @@ namespace Travis;
 
 use Travis\Date;
 
-class Gavel {
-
+class Gavel
+{
     public $congress, $session, $cycle, $year;
 
     /**
@@ -181,7 +181,13 @@ class Gavel {
     public static function bill_split($string)
     {
         // split string
-        list($type, $number) = preg_split('/([a-z]+)/i', $string, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        try {
+            list($type, $number) = preg_split('/([a-z]+)/i', $string, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        }
+        catch {
+            $type = null;
+            $number = null;
+        }
 
         // prepare array
         $final = array(
@@ -192,5 +198,4 @@ class Gavel {
         // return
         return $final;
     }
-
 }
