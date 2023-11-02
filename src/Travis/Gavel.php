@@ -169,7 +169,10 @@ class Gavel
      */
     public static function bill_clean($string)
     {
-        return strtoupper(preg_replace('/[.,!?:;\'"-]+/i', '', $string));
+        $string = preg_replace('/[.,!?:;\'"-]+/i', '', $string);
+        $string = str_ireplace([' '], [''], $string);
+
+        return strtoupper($string);
     }
 
     /**
