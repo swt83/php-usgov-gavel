@@ -176,6 +176,35 @@ class Gavel
     }
 
     /**
+     * Return properly formateed string of a bill (S123 -> S. 123).
+     *
+     * @param   string  $string
+     * @return  string
+     */
+    public static function bill_format($string, $is_no_spaces = true)
+    {
+        $part = static::bill_split($string);
+
+        $map = [
+            'hconres' => 'H. Con. Res.',
+            'hjres' => 'H. J. Res.',
+            'hr' => 'H. R.',
+            'hres' => 'H. Res.',
+            's' => 'S.',
+            'sconres' => 'S. Con. Res.',
+            'sjres' => 'S. J. Res.',
+            'sres' => 'S. Res.',
+        ];
+
+        $type = trim(isset($map[strtolower($part['type'])]) ? $map[strtolower($part['type'])] : $part['type']);
+        $number = $part['number'];
+
+        if ($is_no_spaces) $type = str_ireplace([' '], [''], $type);
+
+        return $type.' '.$number;
+    }
+
+    /**
      * Return array of info from given bill string.
      *
      * @param   string  $string
@@ -183,6 +212,8 @@ class Gavel
      */
     public static function bill_split($string)
     {
+        $string = static::bill_clean($string);
+
         // split string
         $result = preg_split('/([a-z]+)/i', $string, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 
