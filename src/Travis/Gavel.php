@@ -194,6 +194,7 @@ class Gavel
             'sconres' => 'S. Con. Res.',
             'sjres' => 'S. J. Res.',
             'sres' => 'S. Res.',
+            'pn' => 'P.N.', // presidential nomination
         ];
 
         $type = trim(isset($map[strtolower($part['type'])]) ? $map[strtolower($part['type'])] : $part['type']);
